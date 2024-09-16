@@ -18,6 +18,6 @@ fun main() {
     // Type mismatch.
     // Required: String
     // Found: String?
-    email3.let { sendToEmail(it) }
+    //email3.let { sendToEmail(it) }
     email3?.let { sendToEmail(it) }
 }
