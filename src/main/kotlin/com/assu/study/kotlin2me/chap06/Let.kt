@@ -12,4 +12,12 @@ fun main() {
 
     // 아무일도 일어나지 않음
     email2?.let { sendToEmail(it) }
+
+    val email3: String? = "assu@test"
+
+    // Type mismatch.
+    // Required: String
+    // Found: String?
+    email3.let { sendToEmail(it) }
+    email3?.let { sendToEmail(it) }
 }
