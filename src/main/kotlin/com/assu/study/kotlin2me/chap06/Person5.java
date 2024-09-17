@@ -1,5 +1,9 @@
 package com.assu.study.kotlin2me.chap06;
 
+interface JavaInterface {
+  void action(String input);
+}
+
 public class Person5 {
   private final String name;
 
