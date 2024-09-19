@@ -1,8 +1,8 @@
 package com.assu.study.kotlin2me.chap06
 
-// src 컬렉션은 변경하지 않지만, target 컬레교션은 변경한다는 사실을 알 수 있음
+// src 컬렉션은 변경하지 않지만, target 컬렉션은 변경한다는 사실을 알 수 있음
 fun <T> copyElements(
-    src: FileContent<T>,
+    src: Collection<T>,
     target: MutableCollection<T>,
 ) {
     for (item in src) {
@@ -11,7 +11,7 @@ fun <T> copyElements(
 }
 
 fun main() {
-    val src: FileContent<Int> = listOf(1, 2, 3)
+    val src: Collection<Int> = listOf(1, 2, 3)
     val target: MutableCollection<Int> = mutableListOf(4, 5)
 
     copyElements(src, target)
