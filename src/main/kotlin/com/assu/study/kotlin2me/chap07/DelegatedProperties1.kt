@@ -43,7 +43,7 @@ class People(
 fun main() {
     val p = People("Assu", 20, 100)
 
-    // 프로퍼티 변경 리스터 추가
+    // 프로퍼티 변경 리스너 추가
     p.addPropertyChangeListener { event ->
         println("Property ${event.propertyName} changed from ${event.oldValue} to ${event.newValue}")
     }

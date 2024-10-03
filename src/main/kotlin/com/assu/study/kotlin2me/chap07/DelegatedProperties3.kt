@@ -2,9 +2,10 @@ package com.assu.study.kotlin2me.chap07
 
 import java.beans.PropertyChangeListener
 import java.beans.PropertyChangeSupport
+import kotlin.reflect.KProperty
 
 // PropertyChangeSupport 를 사용하기 위한 도우미 클래스 (이건 그대로 사용)
-open class PropertyChangeAware2 {
+open class PropertyChangeAware3 {
     protected val changeSupport = PropertyChangeSupport(this)
 
     fun addPropertyChangeListener(listener: PropertyChangeListener) {
@@ -17,42 +18,38 @@ open class PropertyChangeAware2 {
 }
 
 // 프로퍼티의 값을 저장하고 필요에 따라 통지를 보내주는 클래스
-class ObservableProperty(
-    val propName: String,
+// 위임 프로퍼티를 사용하기 위해 getValue(), setValue() 를 코틀린 관례에 맞게 수정
+class ObservableProperty3(
     var propValue: Int,
     val changeSupport: PropertyChangeSupport,
 ) {
-    fun getValue(): Int = propValue
+    operator fun getValue(
+        p: People3,
+        prop: KProperty<*>,
+    ): Int = propValue
 
-    fun setValue(newValue: Int) {
+    operator fun setValue(
+        p: People3,
+        prop: KProperty<*>,
+        newValue: Int,
+    ) {
         val oldValue = propValue
         propValue = newValue
-        changeSupport.firePropertyChange(propName, oldValue, newValue)
+        changeSupport.firePropertyChange(prop.name, oldValue, newValue)
     }
 }
 
-class People2(
+class People3(
     val name: String,
     age: Int,
     salary: Int,
-) : PropertyChangeAware2() {
-    val _age = ObservableProperty("age", age, changeSupport)
-    var age: Int
-        get() = _age.getValue()
-        set(value) {
-            _age.setValue(value)
-        }
-
-    val _salary = ObservableProperty("salary", salary, changeSupport)
-    var salary: Int
-        get() = _salary.getValue()
-        set(value) {
-            _salary.setValue(value)
-        }
+) : PropertyChangeAware3() {
+    var age: Int by ObservableProperty3(age, changeSupport)
+    var salary: Int by ObservableProperty3(salary, changeSupport)
 }
 
 fun main() {
-    val p = People2("Assu", 20, 100)
+    val p = People3("Assu", 20, 100)
 
     // 프로퍼티 변경 리스너 추가
     p.addPropertyChangeListener { event ->
