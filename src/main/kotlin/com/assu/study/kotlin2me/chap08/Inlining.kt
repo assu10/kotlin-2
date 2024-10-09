@@ -24,8 +24,8 @@ fun foo(lock: Lock) {
 }
 
 fun main() {
-    val lock = Lock()
-    customSynchronized(lock) {
-        // ..
-    }
+//    val lock = Lock()
+//    customSynchronized(lock) {
+//        // ..
+//    }
 }
