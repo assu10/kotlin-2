@@ -1,4 +1,4 @@
-package com.assu.study.kotlin2me.chap10.jkid.examples
+package com.assu.study.kotlin2me.chap10.jkid.examples.serialization
 
 import ru.yole.jkid.DeserializeInterface
 import ru.yole.jkid.deserialization.deserialize
