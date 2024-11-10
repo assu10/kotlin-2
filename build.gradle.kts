@@ -23,10 +23,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.jetbrains.kotlin:kotlin-test:2.0.21")
-
-    // implementation("org.junit.jupiter:junit-jupiter-api:5.11.3")
-    // implementation("junit:junit:4.13.2")
-    // testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
 }
 
 tasks.withType<KotlinCompile> {

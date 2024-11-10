@@ -9,17 +9,17 @@ fun serializerForBasicType(type: Type): ValueSerializer<out Any?> {
 }
 
 fun serializerForType(type: Type): ValueSerializer<out Any?>? =
-        when (type) {
-            Byte::class.java, Byte::class.javaObjectType -> ByteSerializer
-            Short::class.java, Short::class.javaObjectType -> ShortSerializer
-            Int::class.java, Int::class.javaObjectType -> IntSerializer
-            Long::class.java, Long::class.javaObjectType -> LongSerializer
-            Float::class.java, Float::class.javaObjectType -> FloatSerializer
-            Double::class.java, Double::class.javaObjectType -> DoubleSerializer
-            Boolean::class.java, Boolean::class.javaObjectType -> BooleanSerializer
-            String::class.java -> StringSerializer
-            else -> null
-        }
+    when (type) {
+        Byte::class.java, Byte::class.javaObjectType -> ByteSerializer
+        Short::class.java, Short::class.javaObjectType -> ShortSerializer
+        Int::class.java, Int::class.javaObjectType -> IntSerializer
+        Long::class.java, Long::class.javaObjectType -> LongSerializer
+        Float::class.java, Float::class.javaObjectType -> FloatSerializer
+        Double::class.java, Double::class.javaObjectType -> DoubleSerializer
+        Boolean::class.java, Boolean::class.javaObjectType -> BooleanSerializer
+        String::class.java -> StringSerializer
+        else -> null
+    }
 
 private fun Any?.expectNumber(): Number {
     if (this !is Number) throw JKidException("Expected number, was: $this")
@@ -28,31 +28,37 @@ private fun Any?.expectNumber(): Number {
 
 object ByteSerializer : ValueSerializer<Byte> {
     override fun fromJsonValue(jsonValue: Any?) = jsonValue.expectNumber().toByte()
+
     override fun toJsonValue(value: Byte) = value
 }
 
 object ShortSerializer : ValueSerializer<Short> {
     override fun fromJsonValue(jsonValue: Any?) = jsonValue.expectNumber().toShort()
+
     override fun toJsonValue(value: Short) = value
 }
 
 object IntSerializer : ValueSerializer<Int> {
     override fun fromJsonValue(jsonValue: Any?) = jsonValue.expectNumber().toInt()
+
     override fun toJsonValue(value: Int) = value
 }
 
 object LongSerializer : ValueSerializer<Long> {
     override fun fromJsonValue(jsonValue: Any?) = jsonValue.expectNumber().toLong()
+
     override fun toJsonValue(value: Long) = value
 }
 
 object FloatSerializer : ValueSerializer<Float> {
     override fun fromJsonValue(jsonValue: Any?) = jsonValue.expectNumber().toFloat()
+
     override fun toJsonValue(value: Float) = value
 }
 
 object DoubleSerializer : ValueSerializer<Double> {
     override fun fromJsonValue(jsonValue: Any?) = jsonValue.expectNumber().toDouble()
+
     override fun toJsonValue(value: Double) = value
 }
 
