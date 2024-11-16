@@ -23,6 +23,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.jetbrains.kotlin:kotlin-test:2.0.21")
+    testImplementation("io.kotest:kotest-runner-junit5:5.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-html:0.11.0")
 }
 
